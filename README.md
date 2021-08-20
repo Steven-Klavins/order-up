@@ -2,7 +2,7 @@
 
 ## About 
 
-This project is part of the [React The Complete Guide course curriculum.](https://www.udemy.com/course/react-the-complete-guide-incl-redux/). Order up is a front end application for ordering meals, items can be added an subtracted dynamically updating the cart. 
+This project is part of the [React The Complete Guide course curriculum.](https://www.udemy.com/course/react-the-complete-guide-incl-redux/) Order up is a front end application for ordering meals, items can be added an subtracted dynamically updating the cart. 
 
 <p align="center">
 <img src="Screenshot.png" alt="screenshot" width="600"/>
