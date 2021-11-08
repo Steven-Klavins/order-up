@@ -1,25 +1,26 @@
-import {useState, useEffect, useCallback} from "react";
+import { useState, useEffect, useCallback } from "react";
 import styles from "./AvailableMeals.module.css";
 import Card from "../UI/Card";
 import MealItem from "./MealItem/MealItem";
 
-function AvailableMeals(props) {
-
+function AvailableMeals() {
   const [meals, setMeals] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const fetchMealsHandler = useCallback(async () => {
+
     setIsLoading(true);
     setError(null);
+
     try {
       const response = await fetch(process.env.REACT_APP_FIREBASE_URL);
       if (!response.ok) {
-        throw new Error('Something went wrong!');
+        throw new Error("Something went wrong!");
       }
 
       const data = await response.json();
-      console.log(data)
+      console.log(data);
 
       const loadedMeals = [];
 
@@ -28,13 +29,13 @@ function AvailableMeals(props) {
           id: key,
           name: data[key].name,
           description: data[key].description,
-          price: data[key].price
-
-        })
+          price: data[key].price,
+        });
       }
 
       setMeals(loadedMeals);
     } catch (error) {
+      setIsLoading(false)
       setError(error.message);
     }
     setIsLoading(false);
@@ -49,9 +50,16 @@ function AvailableMeals(props) {
       <section className={styles.mealsLoading}>
         <p>Loading...</p>
       </section>
-    )
+    );
   }
 
+  if(error) {
+    return(
+    <section className={styles.error}>
+      <p>Sorry, something went wrong...</p>
+    </section>
+    )
+  }
 
   const mealsList = meals.map((meal) => (
     <MealItem
@@ -65,7 +73,6 @@ function AvailableMeals(props) {
   return (
     <section className={styles.meals}>
       <Card>
-        {error && <Card><p>Sorry something went wrong!</p></Card>}
         <ul>{mealsList}</ul>
       </Card>
     </section>
