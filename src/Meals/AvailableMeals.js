@@ -44,6 +44,13 @@ function AvailableMeals(props) {
     fetchMealsHandler();
   }, [fetchMealsHandler]);
 
+  if (isLoading) {
+    return (
+      <section className={styles.mealsLoading}>
+        <p>Loading...</p>
+      </section>
+    )
+  }
 
 
   const mealsList = meals.map((meal) => (
@@ -58,7 +65,6 @@ function AvailableMeals(props) {
   return (
     <section className={styles.meals}>
       <Card>
-        {isLoading && <Card><p>Loading meals....</p></Card>}
         {error && <Card><p>Sorry something went wrong!</p></Card>}
         <ul>{mealsList}</ul>
       </Card>
