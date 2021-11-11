@@ -14,7 +14,7 @@ function AvailableMeals() {
     setError(null);
 
     try {
-      const response = await fetch(process.env.REACT_APP_FIREBASE_URL);
+      const response = await fetch(process.env.REACT_APP_FIREBASE_MEALS_URL);
       if (!response.ok) {
         throw new Error("Something went wrong!");
       }
