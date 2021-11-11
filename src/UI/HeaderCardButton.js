@@ -29,7 +29,7 @@ function HeaderCardButton(props) {
       clearTimeout(timer); 
     }
 
-  }, [items]);
+  }, [items, cartCtx.items.length]);
 
   return (
     <button className={btnClasses} onClick={props.onClick}>
