@@ -23,6 +23,16 @@ function Cart(props) {
     setIsCheckout(true);
   };
 
+  const submitOrderHandler = (userData) => {
+    fetch(process.env.REACT_APP_FIREBASE_ORDERS_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        user: userData,
+        orderedItems: cartCtx.items
+      })
+    })
+  }
+
   const modelActions = (
     <div className={styles.actions}>
       <button className={styles["button--alt"]} onClick={props.onClose}>
@@ -57,7 +67,7 @@ function Cart(props) {
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {isCheckout && <Checkout onCancel={props.onClose} />}
+      {isCheckout && <Checkout onConfirm ={submitOrderHandler} onCancel={props.onClose} />}
       {!isCheckout && modelActions}
     </Modal>
   );
